@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>coroom — 회의실 예약 대시보드</title>
+<link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+<header class="app-header">
+  <div class="brand">
+    <span class="logo">🗓️</span>
+    <h1>coroom</h1>
+  </div>
+  <nav class="app-nav">
+    <a href="./index.html" class="active">대시보드</a>
+    <a href="./reservations.html">예약 목록</a>
+  </nav>
+</header>
+
+<main>
+  <section class="toolbar">
+    <label>
+      날짜 선택
+      <input type="date" id="date-picker" />
+    </label>
+    <div class="legend">
+      <span><span class="swatch available"></span>예약 가능</span>
+      <span><span class="swatch reserved"></span>예약됨</span>
+      <span><span class="swatch past"></span>지난 시간</span>
+    </div>
+    <span class="date-label" id="date-label"></span>
+  </section>
+
+  <div class="grid-wrapper">
+    <table class="room-grid" id="room-grid">
+      <thead>
+        <tr id="grid-head-row">
+          <th class="time-col">시간</th>
+        </tr>
+      </thead>
+      <tbody id="grid-body">
+        <!-- JS로 렌더링 -->
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<!-- 회의실 정보 팝오버 -->
+<div class="popover" id="room-popover">
+  <h3 id="popover-title"></h3>
+  <dl>
+    <dt>수용인원</dt>
+    <dd id="popover-capacity"></dd>
+    <dt>층</dt>
+    <dd id="popover-floor"></dd>
+    <dt>장비</dt>
+    <dd id="popover-equipment"></dd>
+  </dl>
+  <div class="note-banner" id="popover-note" style="display:none;"></div>
+</div>
+
+<!-- 빠른 예약 모달 -->
+<dialog id="reservation-modal">
+  <form method="dialog" id="reservation-form">
+    <div class="modal-header">
+      <h2>빠른 예약</h2>
+      <div class="modal-sub" id="modal-sub-info"></div>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="field-room-id" />
+      <input type="hidden" id="field-date" />
+      <input type="hidden" id="field-start-time" />
+
+      <div class="field-row">
+        <div class="field">
+          <label for="field-start-display">시작시각</label>
+          <input type="text" id="field-start-display" readonly />
+        </div>
+        <div class="field">
+          <label for="field-end-time">종료시각</label>
+          <select id="field-end-time" required></select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="field-booker">예약자명</label>
+        <input type="text" id="field-booker" placeholder="예: 박도윤" required />
+      </div>
+
+      <div class="field">
+        <label for="field-department">부서</label>
+        <input type="text" id="field-department" placeholder="예: 마케팅팀" required />
+      </div>
+
+      <div class="field">
+        <label for="field-title">회의 제목</label>
+        <input type="text" id="field-title" placeholder="예: 주간 팀 회의" required />
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" id="modal-cancel-btn">취소</button>
+      <button type="submit" class="btn primary" id="modal-submit-btn">예약하기</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="toast"></div>
+
+<script type="module" src="./js/dashboard.js"></script>
+</body>
+</html>

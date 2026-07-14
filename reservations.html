@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>coroom — 예약 목록</title>
+<link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+<header class="app-header">
+  <div class="brand">
+    <span class="logo">🗓️</span>
+    <h1>coroom</h1>
+  </div>
+  <nav class="app-nav">
+    <a href="./index.html">대시보드</a>
+    <a href="./reservations.html" class="active">예약 목록</a>
+  </nav>
+</header>
+
+<main>
+  <section class="toolbar filter-bar">
+    <label>
+      날짜
+      <input type="date" id="filter-date" />
+    </label>
+    <label>
+      회의실
+      <select id="filter-room">
+        <option value="">전체</option>
+      </select>
+    </label>
+    <label>
+      부서
+      <input type="text" id="filter-department" placeholder="예: 마케팅팀" />
+    </label>
+    <label>
+      예약자
+      <input type="text" id="filter-booker" placeholder="예: 박도윤" />
+    </label>
+    <div class="actions">
+      <label class="checkbox-field">
+        <input type="checkbox" id="filter-show-cancelled" />
+        취소된 예약도 보기
+      </label>
+      <button type="button" class="btn" id="filter-reset-btn">필터 초기화</button>
+      <button type="button" class="btn primary" id="filter-apply-btn">검색</button>
+    </div>
+  </section>
+
+  <table class="reservation-table">
+    <thead>
+      <tr>
+        <th>예약코드</th>
+        <th>회의실</th>
+        <th>날짜</th>
+        <th>시간</th>
+        <th>예약자</th>
+        <th>부서</th>
+        <th>회의 제목</th>
+        <th>상태</th>
+        <th>액션</th>
+      </tr>
+    </thead>
+    <tbody id="reservation-list-body">
+      <!-- JS로 렌더링 -->
+    </tbody>
+  </table>
+</main>
+
+<div id="toast"></div>
+
+<script type="module" src="./js/reservations.js"></script>
+</body>
+</html>
