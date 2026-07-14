@@ -233,8 +233,11 @@ function onRoomNameClick(e, room) {
     popoverNote.style.display = 'none';
   }
 
+  const popoverWidth = Math.min(240, window.innerWidth - 24);
+  const maxLeft = window.scrollX + window.innerWidth - popoverWidth - 8;
+  const idealLeft = rect.left + window.scrollX - 40;
   popover.style.top = `${rect.bottom + window.scrollY + 6}px`;
-  popover.style.left = `${Math.max(8, rect.left + window.scrollX - 40)}px`;
+  popover.style.left = `${Math.max(8, Math.min(idealLeft, maxLeft))}px`;
   popover.classList.add('open');
 }
 

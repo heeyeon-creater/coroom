@@ -2,8 +2,17 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>coroom — 예약 목록</title>
+<link rel="manifest" href="./manifest.webmanifest" />
+<meta name="theme-color" content="#2f6fed" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="coroom" />
+<link rel="icon" type="image/png" sizes="32x32" href="./icons/coroom-favicon-32.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/coroom-favicon-192.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/coroom-icon-180.png" />
 <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
@@ -48,28 +57,31 @@
     </div>
   </section>
 
-  <table class="reservation-table">
-    <thead>
-      <tr>
-        <th>예약코드</th>
-        <th>회의실</th>
-        <th>날짜</th>
-        <th>시간</th>
-        <th>예약자</th>
-        <th>부서</th>
-        <th>회의 제목</th>
-        <th>상태</th>
-        <th>액션</th>
-      </tr>
-    </thead>
-    <tbody id="reservation-list-body">
-      <!-- JS로 렌더링 -->
-    </tbody>
-  </table>
+  <div class="table-scroll">
+    <table class="reservation-table">
+      <thead>
+        <tr>
+          <th>예약코드</th>
+          <th>회의실</th>
+          <th>날짜</th>
+          <th>시간</th>
+          <th>예약자</th>
+          <th>부서</th>
+          <th>회의 제목</th>
+          <th>상태</th>
+          <th>액션</th>
+        </tr>
+      </thead>
+      <tbody id="reservation-list-body">
+        <!-- JS로 렌더링 -->
+      </tbody>
+    </table>
+  </div>
 </main>
 
 <div id="toast"></div>
 
 <script type="module" src="./js/reservations.js"></script>
+<script type="module" src="./js/pwa.js"></script>
 </body>
 </html>

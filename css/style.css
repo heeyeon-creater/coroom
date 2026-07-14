@@ -185,6 +185,8 @@ table.room-grid thead th {
 
 table.room-grid thead th.time-col {
   width: 66px;
+  left: 0;
+  z-index: 4;
 }
 
 .room-name-btn {
@@ -227,6 +229,9 @@ th.time-label {
   font-weight: 600;
   width: 66px;
   padding: 4px;
+  position: sticky;
+  left: 0;
+  z-index: 2;
 }
 
 .slot-cell {
@@ -298,6 +303,7 @@ button.slot.past {
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
   padding: 14px 16px;
   width: 240px;
+  max-width: calc(100vw - 24px);
   font-size: 13px;
   display: none;
 }
@@ -497,6 +503,10 @@ button {
   margin-left: auto;
 }
 
+.table-scroll {
+  overflow-x: auto;
+}
+
 table.reservation-table {
   width: 100%;
   border-collapse: collapse;
@@ -560,11 +570,179 @@ table.reservation-table tbody tr.cancelled {
   color: var(--color-muted);
 }
 
+/* 오프라인 상태 표시줄 */
+.offline-indicator {
+  background: #fef3c7;
+  color: #92400e;
+  text-align: center;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 12px;
+}
+
+/* 설치 배너 (홈 화면에 추가 안내) */
+.install-banner {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #1f2430;
+  color: #fff;
+  border-radius: 14px;
+  padding: 12px 14px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
+  transform: translateY(120%);
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.install-banner.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.install-banner-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.install-banner-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.install-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.install-banner-action {
+  padding: 7px 12px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.install-banner-close {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+}
+
+.install-banner-close:hover {
+  color: #fff;
+}
+
+/* 모바일 대응 */
 @media (max-width: 720px) {
   main {
     padding: 16px;
   }
   .toolbar .date-label {
     margin-left: 0;
+  }
+
+  table.reservation-table {
+    min-width: 640px;
+  }
+}
+
+@media (max-width: 560px) {
+  header.app-header {
+    padding: 12px 14px;
+  }
+
+  header.app-header h1 {
+    font-size: 17px;
+  }
+
+  header.app-header .brand .logo {
+    font-size: 19px;
+  }
+
+  nav.app-nav a {
+    padding: 7px 10px;
+    font-size: 13px;
+  }
+
+  main {
+    padding: 12px 12px 48px;
+  }
+
+  .toolbar,
+  .filter-bar {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .toolbar label,
+  .filter-bar label {
+    width: 100%;
+  }
+
+  .toolbar input[type="date"],
+  .toolbar input[type="text"],
+  .toolbar select {
+    width: 100%;
+  }
+
+  .filter-bar .actions {
+    width: 100%;
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+
+  .filter-bar .actions button {
+    flex: 1;
+  }
+
+  .legend {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    row-gap: 6px;
+  }
+
+  dialog#reservation-modal {
+    width: calc(100vw - 24px);
+  }
+
+  .modal-body {
+    padding: 14px 16px;
+  }
+
+  .modal-header {
+    padding: 16px 16px 6px;
+  }
+
+  .modal-footer {
+    padding: 12px 16px 16px;
+  }
+
+  #toast {
+    left: 12px;
+    right: 12px;
+    transform: translateY(12px);
+    max-width: none;
+    text-align: center;
+  }
+
+  #toast.show {
+    transform: translateY(0);
+  }
+
+  .install-banner {
+    flex-wrap: wrap;
   }
 }
